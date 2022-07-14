@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <script src="../components/header/header.mjs" type="module"></script>
+    <script src="../components/add/add.mjs" type="module" defer></script>
+    <script
+      src="../components/todoList/todoList.mjs"
+      type="module"
+      defer
+    ></script>
+    <script
+      src="../components/todoApp/todoApp.mjs"
+      type="module"
+      defer
+    ></script>
+    <script src="../components/search/search.mjs" type="module" defer></script>
+    <script
+      src="../components/actionBtn/actionBtn.mjs"
+      type="module"
+      defer
+    ></script>
+    <script src="../components/navBtn/navBtn.mjs" type="module" defer></script>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="../styles/reset.css" />
+    <link rel="stylesheet" href="../styles/utility.css" />
+    <link rel="stylesheet" href="../styles/main.css" />
+    <title>Todo app</title>
+  </head>
+  <body>
+    <div is="header-component">
+      <header>
+        <h3>todo</h3>
+        <button class="logout">
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            class="icon icon-tabler icon-tabler-logout"
+            width="24"
+            height="24"
+            viewBox="0 0 24 24"
+            stroke-width="2"
+            stroke="currentColor"
+            fill="none"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+          >
+            <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
+            <path
+              d="M14 8v-2a2 2 0 0 0 -2 -2h-7a2 2 0 0 0 -2 2v12a2 2 0 0 0 2 2h7a2 2 0 0 0 2 -2v-2"
+            ></path>
+            <path d="M7 12h14l-3 -3m0 6l3 -3"></path>
+          </svg>
+        </button>
+      </header>
+    </div>
+
+    <div is="todo-app">
+      <dialog id="edit-todo">
+        <div>
+          <button id="close-btn">
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              class="icon icon-tabler icon-tabler-x"
+              width="15"
+              height="15"
+              viewBox="0 0 24 24"
+              stroke-width="2"
+              stroke="currentColor"
+              fill="none"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+            >
+              <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
+              <line x1="18" y1="6" x2="6" y2="18"></line>
+              <line x1="6" y1="6" x2="18" y2="18"></line>
+            </svg>
+          </button>
+        </div>
+        <form id="edit-todo-form">
+          <fieldset>
+            <legend>edit</legend>
+            <label for="title">title</label>
+            <input
+              type="text"
+              id="title"
+              name="title"
+              require
+              autocomplete="off"
+            />
+            <div>
+              <label for="status">pending</label>
+              <input
+                type="radio"
+                id="status"
+                name="status"
+                value="pending"
+                checked
+                autocomplete="off"
+              />
+              <label for="status">done</label>
+              <input type="radio" id="status" name="status" value="done" />
+            </div>
+            <label for="description">description</label>
+            <textarea
+              id="description"
+              name="description"
+              cols="30"
+              rows="10"
+              require
+            ></textarea>
+            <label for="date">date</label>
+            <input type="datetime-local" id="date" name="date" require />
+            <button type="submit" class="update__btn">update</button>
+          </fieldset>
+        </form>
+      </dialog>
+      <todo-search></todo-search>
+      <section class="content">
+        <div class="add__container">
+          <add-todo></add-todo>
+          <div class="filter">
+            <div>
+              <label for="all">all</label>
+              <input type="radio" id="all" name="filter" value="all" checked />
+            </div>
+            <div>
+              <label for="pending">pending</label>
+              <input type="radio" id="pending" name="filter" value="pending" />
+            </div>
+            <div>
+              <label for="done">done</label>
+              <input type="radio" id="done" name="filter" value="done" />
+            </div>
+          </div>
+        </div>
+        <todo-list></todo-list>
+      </section>
+    </div>
+  </body>
+</html>
