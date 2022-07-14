@@ -1,0 +1,247 @@
+/*import lobster from google fonts all weights*/
+@import url('https://fonts.googleapis.com/css2?family=Lato:wght@300;400;700;900&display=swap');
+:root {
+  /*color scale*/
+  --color-100: #124bbc;
+  --color-200: #5980cc;
+  --color-300: #3665c1;
+  --color-400: #082c72;
+  /*text scale*/
+  --text-100: 3rem;
+  --text-200: 2.4rem;
+  --text-300: 2rem;
+  --text-400: 1.6rem;
+  --text-500: 1rem;
+  --text-600: 0.8rem;
+  /*text color scale*/
+  --text-color-100: #e0e9f7;
+  --text-color-200: #3e4146;
+  --text-color-300: #101112;
+  --text-color-400: #06080c;
+  --text-color-500: #04060b;
+  /*context colors danger, alert, info, success*/
+  --context-danger: #ff0000;
+  --context-alert: #fbff00;
+  --context-info: #00ff00;
+  --context-success: #00b7ff;
+  /*spacing scale*/
+  --spacing-100: 1.8rem;
+  --spacing-200: 1.5rem;
+  --spacing-300: 1.2rem;
+  --spacing-400: 1rem;
+  --spacing-500: 0.8rem;
+  --spacing-600: 0.6rem;
+  --spacing-700: 0.4rem;
+  --spacing-800: 0.2rem;
+  /*box shadow scale*/
+  --box-shadow-100: 0 0.2rem 0.4rem rgba(0, 0, 0, 0.1);
+  --box-shadow-200: 0.5rem 0.4rem 0.8rem rgba(0, 0, 0, 0.2);
+  --box-shadow-300: 0.6rem 0.8rem 1.6rem rgba(0, 0, 0, 0.3);
+  --box-shadow-400: 1rem 1.6rem 3.2rem rgba(0, 0, 0, 0.4);
+  --box-shadow-500: 1.2rem 3.2rem 6.4rem rgba(0, 0, 0, 0.5);
+  /*box shadow inset scale*/
+  --box-shadow-inset-100: inset 0 0.2rem 0.4rem rgba(0, 0, 0, 0.1);
+  --box-shadow-inset-200: inset 0.5rem 0.4rem 0.8rem rgba(0, 0, 0, 0.2);
+  --box-shadow-inset-300: inset 0.6rem 0.8rem 1.6rem rgba(0, 0, 0, 0.3);
+  --box-shadow-inset-400: inset 1rem 1.6rem 3.2rem rgba(0, 0, 0, 0.4);
+  --box-shadow-inset-500: inset 1.2rem 3.2rem 6.4rem rgba(0, 0, 0, 0.5);
+  /*border radius scale*/
+  --border-radius-100: 0.2rem;
+  --border-radius-200: 0.4rem;
+  --border-radius-300: 0.6rem;
+  --border-radius-400: 0.8rem;
+  --border-radius-500: 1rem;
+  /*border scale*/
+  --border-100: 0.2rem solid #e0e9f7;
+  --border-200: 0.4rem solid #3e4146;
+  --border-300: 0.6rem solid #101112;
+  --border-400: 0.8rem solid #06080c;
+  --border-500: 1rem solid #04060b;
+  /*border width scale*/
+  --border-width-100: 0.2rem;
+  --border-width-200: 0.4rem;
+  --border-width-300: 0.6rem;
+  --border-width-400: 0.8rem;
+  --border-width-500: 1rem;
+  /*transition scale*/
+  --transition-all-100: all 0.2s ease-in-out;
+  --transition-all-200: all 0.4s ease-in-out;
+  --transition-all-300: all 0.6s ease-in-out;
+  --transition-all-400: all 0.8s ease-in-out;
+  --transition-all-500: all 1s ease-in-out;
+  --transition-all-600: all 2s ease-in-out;
+  --transition-all-700: all 8s ease-in-out;
+}
+@keyframes slideInTop {
+  0% {
+    transform: translateY(-100%);
+  }
+  100% {
+    transform: translateY(0);
+  }
+}
+
+@keyframes fadeIn {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+
+*,
+*::after,
+*::before {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  text-decoration: none;
+  line-height: 1.5;
+  color: inherit;
+  font-family: inherit;
+  list-style: none;
+}
+
+html,
+body {
+  height: 100vh;
+  overflow-x: hidden;
+  font-family: 'Lato', sans-serif;
+  color: var(--text-color-400);
+  background-color: whitesmoke;
+  scroll-behavior: smooth;
+  scroll-padding-top: calc(var(--spacing-100) * 1.5);
+}
+
+body {
+  position: relative;
+}
+
+header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: var(--spacing-500);
+  color: var(--text-color-400);
+  box-shadow: var(--box-shadow-100);
+  background-color: var(--color-200);
+}
+
+h1 {
+  font-size: var(--text-100);
+  font-weight: 700;
+}
+
+h2 {
+  font-size: var(--text-200);
+  font-weight: 700;
+}
+
+h3 {
+  font-size: var(--text-300);
+  font-weight: 700;
+}
+
+h4 {
+  font-size: var(--text-400);
+  font-weight: 700;
+}
+
+header :is(h3) {
+  text-transform: capitalize;
+  font-size: var(--text-600);
+  color: var(--text-color-100);
+}
+
+p {
+  font-size: var(--text-500);
+  max-width: 30ch;
+}
+
+footer {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: var(--spacing-500);
+  color: var(--text-color-400);
+  background-color: var(--color-200);
+}
+
+input {
+  border: none;
+  border-radius: var(--border-radius-400);
+  font-size: var(--text-700);
+  color: var(--text-color-400);
+  background-color: var(--text-color-100);
+  padding: var(--spacing-700);
+  box-shadow: var(--box-shadow-100);
+  transition: var(--transition-all-100);
+  -webkit-border-radius: var(--border-radius-400);
+  -moz-border-radius: var(--border-radius-400);
+  -ms-border-radius: var(--border-radius-400);
+  -o-border-radius: var(--border-radius-400);
+}
+
+login-component::part(input) {
+  border: none;
+  border-radius: var(--border-radius-400);
+  font-size: var(--text-700);
+  color: var(--text-color-400);
+  background-color: var(--text-color-100);
+  transition: var(--transition-all-100);
+  -webkit-border-radius: var(--border-radius-400);
+  -moz-border-radius: var(--border-radius-400);
+  -ms-border-radius: var(--border-radius-400);
+  -o-border-radius: var(--border-radius-400);
+  -webkit-transition: var(--transition-all-100);
+  -moz-transition: var(--transition-all-100);
+  -ms-transition: var(--transition-all-100);
+  -o-transition: var(--transition-all-100);
+  padding: var(--spacing-700);
+  box-shadow: var(--box-shadow-100);
+}
+
+details[open] summary ~ * {
+  animation: slideInTop 0.5s ease-in-out;
+  -webkit-animation: slideInTop 0.5s ease-in-out;
+}
+
+dialog {
+  margin: auto;
+  padding: var(--spacing-600);
+  filter: drop-shadow(0 0 0.5rem #000);
+  background-color: var(--color-100);
+  border: none;
+  border-radius: var(--border-radius-100);
+  -webkit-border-radius: var(--border-radius-100);
+  -moz-border-radius: var(--border-radius-100);
+  -ms-border-radius: var(--border-radius-100);
+  -o-border-radius: var(--border-radius-100);
+  box-shadow: var(--box-shadow-100);
+  -webkit-box-shadow: var(--box-shadow-100);
+  -moz-box-shadow: var(--box-shadow-100);
+  -ms-box-shadow: var(--box-shadow-100);
+  -o-box-shadow: var(--box-shadow-100);
+  width: 90vw;
+  filter: saturate(0.6);
+  -webkit-filter: saturate(0.6);
+}
+
+dialog[open] {
+  animation: slideInTop 0.5s ease-in-out;
+  -webkit-animation: slideInTop 0.5s ease-in-out;
+}
+fieldset {
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-800);
+  padding: var(--spacing-700);
+}
+
+button {
+  border: none;
+  border-radius: var(--border-radius-400);
+  padding: var(--spacing-700);
+  box-shadow: var(--box-shadow-100);
+}

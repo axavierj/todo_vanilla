@@ -1,0 +1,90 @@
+.nav {
+  position: sticky;
+  top: 0;
+}
+#home {
+  background-color: var(--color-400);
+  display: grid;
+  place-items: center center;
+}
+#read__more {
+  background-color: var(--color-200);
+  display: grid;
+  justify-content: center;
+  padding-top: var(--spacing-400);
+}
+#features {
+  background-color: var(--color-300);
+  display: grid;
+  grid-template-rows: 3rem auto;
+}
+.call__to__action {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.call__to__action :is(.icon__bg) {
+  background-color: var(--color-200);
+  border-radius: var(--border-radius-500);
+  text-align: center;
+  color: white;
+  -webkit-border-radius: var(--border-radius-500);
+  -moz-border-radius: var(--border-radius-500);
+  -ms-border-radius: var(--border-radius-500);
+  -o-border-radius: var(--border-radius-500);
+  height: 2rem;
+  width: 2rem;
+  display: grid;
+  place-items: center center;
+}
+
+.icon-tabler-brand-html5 {
+  color: orangered;
+}
+
+.icon-tabler-brand-css3 {
+  color: blue;
+}
+
+.icon-tabler-brand-javascript {
+  color: rgb(168, 168, 2);
+}
+
+.icon__container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: 50px;
+}
+
+.icon__container
+  :is(.icon-tabler-brand-html5, .icon-tabler-brand-css3, .icon-tabler-brand-javascript) {
+  height: 3rem;
+  width: 3rem;
+}
+#features :is(h3) {
+  color: var(--text-color-100);
+  justify-self: center;
+}
+
+#features :is(.card) {
+  width: 95%;
+  margin-inline: auto;
+}
+
+#features :not(last-child) {
+  margin-bottom: var(--spacing-600);
+}
+
+@media only screen and (min-width: 768px) {
+  .features__list {
+    display: grid;
+    gap: var(--spacing-600);
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  }
+
+  .icon__container {
+    margin-top: 70px;
+  }
+}
