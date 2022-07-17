@@ -8,6 +8,7 @@ export const crud = (method) => {
           headers: {
             'Content-Type': 'application/json',
             Authorization: `Bearer ${token}`,
+            'Access-Control-Allow-Origin': '*',
           },
         })
         const data = await response.json()
@@ -22,6 +23,7 @@ export const crud = (method) => {
           headers: {
             'Content-Type': 'application/json',
             Authorization: `Bearer ${token}`,
+            'Access-Control-Allow-Origin': '*',
           },
         })
         const json = await response.json()
@@ -36,6 +38,7 @@ export const crud = (method) => {
           headers: {
             'Content-Type': 'application/json',
             Authorization: `Bearer ${token}`,
+            'Access-Control-Allow-Origin': '*',
           },
         })
         const json = await response.json()
@@ -49,6 +52,7 @@ export const crud = (method) => {
           headers: {
             'Content-Type': 'application/json',
             Authorization: `Bearer ${token}`,
+            'Access-Control-Allow-Origin': '*',
           },
         })
         const json = await response.json()
@@ -62,6 +66,7 @@ export const crud = (method) => {
           headers: {
             'Content-Type': 'application/json',
             Authorization: `Bearer ${token}`,
+            'Access-Control-Allow-Origin': '*',
           },
         })
         const data = await response.json()
