@@ -27,6 +27,6 @@ const metaData = {
   author: 'alexander',
   version: '0.0.1',
   license: 'MIT',
-  api: 'http://localhost:3000/',
+  api: 'https://vanillatodoaxj.herokuapp.com/',
 }
 export default metaData
