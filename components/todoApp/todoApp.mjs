@@ -1,6 +1,7 @@
 import todoService from '../../services/todo.service.mjs'
 import authService from '../../services/login.service.mjs'
 import { extractFormData } from '../../helpers/helpers.mjs'
+import meta from '../../meta/meta.mjs'
 const { getAllTodo, deleteTodo, updateTodo } = todoService
 const { getSessionToken, getUsers } = authService
 class TodoApp extends HTMLDivElement {
@@ -14,21 +15,18 @@ class TodoApp extends HTMLDivElement {
     this.radioBtn = this.querySelectorAll('input[name="filter"]')
     this.todoData = []
     this.user
+    this.url = meta.api
   }
   connectedCallback() {
     const token = getSessionToken()
-    this.user = getUsers(
-      { url: 'http://localhost:3000/api/auth/user' },
-      token.accessToken
+    this.user = getUsers({ url: `${this.url}api/auth/user` }, token.accessToken)
+    getAllTodo({ url: `${this.url}api/todo` }, token.accessToken).then(
+      (data) => {
+        this.todoData = [...data]
+        this.todoList.todos = JSON.stringify(this.todoData)
+        this.search.todos = JSON.stringify(this.todoData)
+      }
     )
-    getAllTodo(
-      { url: 'http://localhost:3000/api/todo' },
-      token.accessToken
-    ).then((data) => {
-      this.todoData = [...data]
-      this.todoList.todos = JSON.stringify(this.todoData)
-      this.search.todos = JSON.stringify(this.todoData)
-    })
     this.close.addEventListener('click', (e) => {
       this.editTodoDialog.close()
     })
@@ -66,7 +64,7 @@ class TodoApp extends HTMLDivElement {
       todo.id = this.editTodoForm.dataset.todo
       todo.user = this.user.id
       const obj = {
-        url: `http://localhost:3000/api/todo/${this.editTodoForm.dataset.todo}`,
+        url: `${this.url}api/todo/${this.editTodoForm.dataset.todo}`,
         data: todo,
       }
       const data = await updateTodo(obj, token.accessToken)
@@ -74,7 +72,7 @@ class TodoApp extends HTMLDivElement {
         e.target.reset()
         this.editTodoDialog.close()
         const data = await getAllTodo(
-          { url: 'http://localhost:3000/api/todo' },
+          { url: `${this.url}api/todo` },
           token.accessToken
         )
         this.todoData = [...data]
@@ -84,7 +82,7 @@ class TodoApp extends HTMLDivElement {
     })
     this.addEventListener('todo-added', async (e) => {
       const data = await getAllTodo(
-        { url: 'http://localhost:3000/api/todo' },
+        { url: `${this.url}api/todo` },
         token.accessToken
       )
       this.todoData = [...data]
@@ -101,13 +99,13 @@ class TodoApp extends HTMLDivElement {
           if (confirmation) {
             await deleteTodo(
               {
-                url: `http://localhost:3000/api/todo/${e.detail.todo}`,
+                url: `${this.url}api/todo/${e.detail.todo}`,
               },
               token.accessToken
             )
             const data = await getAllTodo(
               {
-                url: 'http://localhost:3000/api/todo',
+                url: `${this.url}api/todo`,
               },
               token.accessToken
             )
@@ -121,7 +119,7 @@ class TodoApp extends HTMLDivElement {
           this.editTodoDialog.showModal()
           const singleTodo = await getAllTodo(
             {
-              url: `http://localhost:3000/api/todo/${e.detail.todo}`,
+              url: `${this.url}api/todo/${e.detail.todo}`,
             },
             token.accessToken
           )
