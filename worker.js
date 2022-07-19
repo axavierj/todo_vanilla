@@ -40,7 +40,9 @@ self.addEventListener('install', (event) => {
   })
 })
 //get the activate event
-self.addEventListener('activate', (event) => {})
+self.addEventListener('activate', (event) => {
+  console.log('service worker activated')
+})
 //get the fetch event
 self.addEventListener('fetch', (event) => {
   event.waitUntil(async () => {
