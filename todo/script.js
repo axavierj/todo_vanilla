@@ -2,7 +2,7 @@ import { extractFormData } from '../helpers/helpers.js'
 import todoService from '../services/todo.service.js'
 import authService from '../services/login.service.js'
 import moment from 'https://cdn.skypack.dev/moment'
-import metaData from '../meta/meta.mjs'
+import metaData from '../meta/meta.js'
 
 const token = authService.getSessionToken()
 await authService.guardRoute(token, metaData.api + 'api/guard', '/login')
