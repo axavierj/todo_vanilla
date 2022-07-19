@@ -1,5 +1,5 @@
-import metaData from '../../meta/meta.mjs'
-import authService from '../../services/login.service.mjs'
+import metaData from '../../meta/meta.js'
+import authService from '../../services/login.service.js'
 
 const { getSessionToken, guardRoute, logOut } = authService
 class Header extends HTMLDivElement {

@@ -1,7 +1,7 @@
-import todoService from '../../services/todo.service.mjs'
-import authService from '../../services/login.service.mjs'
-import { extractFormData } from '../../helpers/helpers.mjs'
-import meta from '../../meta/meta.mjs'
+import todoService from '../../services/todo.service.js'
+import authService from '../../services/login.service.js'
+import { extractFormData } from '../../helpers/helpers.js'
+import meta from '../../meta/meta.js'
 const { getAllTodo, deleteTodo, updateTodo } = todoService
 const { getSessionToken, getUsers } = authService
 class TodoApp extends HTMLDivElement {

@@ -1,7 +1,7 @@
-import loginTemplate from './login.template.mjs'
-import { createTransmitObj, extractFormData } from '../../helpers/helpers.mjs'
-import authService from '../../services/login.service.mjs'
-import metaData from '../../meta/meta.mjs'
+import loginTemplate from './login.template.js'
+import { createTransmitObj, extractFormData } from '../../helpers/helpers.js'
+import authService from '../../services/login.service.js'
+import metaData from '../../meta/meta.js'
 
 const { login } = authService
 

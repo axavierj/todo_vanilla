@@ -1,4 +1,4 @@
-import { crud } from '../helpers/helpers.mjs'
+import { crud } from '../helpers/helpers.js'
 const login = crud('POST')
 const register = crud('POST')
 const getUsers = crud('GET')

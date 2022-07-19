@@ -27,6 +27,9 @@ const metaData = {
   author: 'alexander',
   version: '0.0.1',
   license: 'MIT',
-  api: 'https://vanillatodoaxj.herokuapp.com/',
+  api:
+    location.hostname === 'todo-vanilla-app-2.vercel.app'
+      ? 'https://vanillatodoaxj.herokuapp.com/'
+      : 'http://localhost:3000/',
 }
 export default metaData

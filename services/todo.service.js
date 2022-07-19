@@ -1,4 +1,4 @@
-import { crud } from '../helpers/helpers.mjs'
+import { crud } from '../helpers/helpers.js'
 
 const getAllTodo = crud('GET')
 const createTodo = crud('POST')
