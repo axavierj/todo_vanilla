@@ -1,6 +1,6 @@
-import { extractFormData } from '../helpers/helpers.mjs'
-import todoService from '../services/todo.service.mjs'
-import authService from '../services/login.service.mjs'
+import { extractFormData } from '../helpers/helpers.js'
+import todoService from '../services/todo.service.js'
+import authService from '../services/login.service.js'
 import moment from 'https://cdn.skypack.dev/moment'
 import metaData from '../meta/meta.mjs'
 

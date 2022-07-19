@@ -1,8 +1,8 @@
-import addTemplate from './add.template.mjs'
-import todoService from '../../services/todo.service.mjs'
-import authService from '../../services/login.service.mjs'
-import { extractFormData, createCustomEvent } from '../../helpers/helpers.mjs'
-import metaData from '../../meta/meta.mjs'
+import addTemplate from './add.template.js'
+import todoService from '../../services/todo.service.js'
+import authService from '../../services/login.service.js'
+import { extractFormData, createCustomEvent } from '../../helpers/helpers.js'
+import metaData from '../../meta/meta.js'
 
 const { createTodo } = todoService
 const { getSessionToken, getUsers } = authService

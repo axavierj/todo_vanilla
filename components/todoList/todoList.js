@@ -1,4 +1,4 @@
-import todoListTemplate from './todoList.template.mjs'
+import todoListTemplate from './todoList.template.js'
 import moment from 'https://cdn.skypack.dev/moment'
 
 class TodoList extends HTMLElement {

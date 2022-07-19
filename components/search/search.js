@@ -1,5 +1,5 @@
-import { createCustomEvent } from '../../helpers/helpers.mjs'
-import searchTemplate from './search.template.mjs'
+import { createCustomEvent } from '../../helpers/helpers.js'
+import searchTemplate from './search.template.js'
 
 class Search extends HTMLElement {
   constructor() {
