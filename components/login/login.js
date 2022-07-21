@@ -26,7 +26,7 @@ export class Login extends HTMLElement {
         sessionStorage.setItem('user', JSON.stringify(user))
         window.location.href = '/main'
       } else {
-        alert(user)
+        alert(user.message)
       }
       this.form.reset()
     })

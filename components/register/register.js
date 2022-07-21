@@ -14,6 +14,7 @@ class Register extends HTMLElement {
     this.url = `${metaData.api}api/auth/register`
   }
   connectedCallback() {
+    console.table(this.url)
     this.form.addEventListener('submit', async (e) => {
       e.preventDefault()
       const credentials = createTransmitObj(
@@ -21,11 +22,12 @@ class Register extends HTMLElement {
         this.url
       )
       const response = await register(credentials)
+      console.log(response)
       if (response.accessToken) {
         sessionStorage.setItem('user', JSON.stringify(response))
         window.location.href = '/main'
       } else {
-        alert(response)
+        alert(response.message)
       }
       this.form.reset()
     })

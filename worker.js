@@ -1,8 +1,6 @@
 const cacheAssets = [
   '/',
   '/index.html',
-  '/meta',
-  '/styles',
   '/styles/index.css',
   '/styles/login.css',
   '/styles/main.css',
@@ -34,10 +32,11 @@ const cacheDName = 'dynamic-todo-v1'
 //get the install event
 self.addEventListener('install', (event) => {
   //cache all html, css, js and image files
-  event.waitUntil(async () => {
-    const cache = await caches.open(cacheName)
-    await cache.addAll(cacheAssets)
-  })
+  event.waitUntil(
+    caches.open(cacheName).then((cache) => {
+      return cache.addAll(cacheAssets)
+    })
+  )
 })
 //get the activate event
 self.addEventListener('activate', (event) => {
@@ -45,16 +44,22 @@ self.addEventListener('activate', (event) => {
 })
 //get the fetch event
 self.addEventListener('fetch', (event) => {
-  event.waitUntil(async () => {
-    const cache = await caches.open(cacheName)
-    const response = await cache.match(event.request)
-    if (response) {
-      event.respondWith(response)
-    } else {
-      const eventResponse = await fetch(event.request)
-      const cacheD = await caches.open(cacheDName)
-      cacheD.put(event.request, eventResponse.clone())
-      return eventResponse
-    }
-  })
+  //if the request is for /api call the fetch event
+  if (event.request.url.includes('/api')) {
+    event.respondWith(fetch(event.request))
+  } else {
+    event.respondWith(
+      caches.match(event.request).then((response) => {
+        return (
+          response ||
+          fetch(event.request).then((fetchResponse) => {
+            return caches.open(cacheDName).then((cache) => {
+              cache.put(event.request.url, fetchResponse.clone())
+              return fetchResponse
+            })
+          })
+        )
+      })
+    )
+  }
 })

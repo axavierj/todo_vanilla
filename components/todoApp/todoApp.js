@@ -85,6 +85,7 @@ class TodoApp extends HTMLDivElement {
         { url: `${this.url}api/todo` },
         token.accessToken
       )
+      console.log(data)
       this.todoData = [...data]
       this.todoList.todos = JSON.stringify(this.todoData)
       this.search.todos = JSON.stringify(this.todoData)
