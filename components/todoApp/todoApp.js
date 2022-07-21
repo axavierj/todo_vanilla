@@ -1,6 +1,6 @@
 import todoService from '../../services/todo.service.js'
 import authService from '../../services/login.service.js'
-import { extractFormData } from '../../helpers/helpers.js'
+import { extractFormData, createTransmitObj } from '../../helpers/helpers.js'
 import meta from '../../meta/meta.js'
 const { getAllTodo, deleteTodo, updateTodo } = todoService
 const { getSessionToken, getUsers } = authService
@@ -63,11 +63,17 @@ class TodoApp extends HTMLDivElement {
       const todo = extractFormData(this.editTodoForm)
       todo.id = this.editTodoForm.dataset.todo
       todo.user = this.user.id
-      const obj = {
-        url: `${this.url}api/todo/${this.editTodoForm.dataset.todo}`,
-        data: todo,
-      }
-      const data = await updateTodo(obj, token.accessToken)
+      // const obj = {
+      //   url: `${this.url}api/todo/${this.editTodoForm.dataset.todo}`,
+      //   data: todo,
+      // }
+      const data = await updateTodo(
+        createTransmitObj(
+          todo,
+          `${this.url}api/todo/${this.editTodoForm.dataset.todo}`
+        ),
+        token.accessToken
+      )
       if (data) {
         e.target.reset()
         this.editTodoDialog.close()
