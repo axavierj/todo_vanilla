@@ -6,7 +6,7 @@ registerTemplate.innerHTML = `
   width: 90vw;
 }
 small {
-  color: var(--context-danger);
+  color: var(--context-info);
 }
 input {
   border: none;
@@ -63,6 +63,14 @@ form {
     background-color: var(--color-200);
     color: var(--color-100);
   }
+  label {
+    margin-block: var(--spacing-600);
+  }
+  @media only screen and (min-width: 768px) {
+    :host {
+      width: 70vw;
+    }
+  }
 </style>
 <form>
   <fieldset>
@@ -72,7 +80,8 @@ form {
     <label for="userName">User Name</label>
     <input type="text" name="userName" id="userName" autocomplete="off"/>
     <label for="password">Password</label>
-    <input type="password" name="password" id="password"  pattern=".{6,}" autocomplete="off" required/>
+    <input type="password" name="password" id="password"  pattern="/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[#$@!%&*?])[A-Za-z\d#$@!%&*?]{6,30}$/
+    " autocomplete="off" required/>
     <small>Password must be at least 6 characters long</small>
     <button type="submit">register</button>
   </fieldset>

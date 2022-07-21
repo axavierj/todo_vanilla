@@ -3,7 +3,6 @@ loginTemplate.innerHTML = `
 <style>
   :host {
     display: block;
-    width: 90vw;
   }
 form {
   background-color: antiquewhite;
@@ -41,6 +40,9 @@ form {
   button[type="submit"]:hover {
     background-color: var(--color-200);
     color: var(--color-100);
+  }
+  label{
+    margin-block: var(--spacing-600);
   }
 </style>
 <form>

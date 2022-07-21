@@ -168,3 +168,7 @@ button[is='action-btn'][data-action='delete'] {
 #todo-action {
   order: 5;
 }
+
+.filter :is(label) {
+  color: white;
+}
