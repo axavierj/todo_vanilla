@@ -1,4 +1,4 @@
-import { extractFormData } from '../helpers/helpers.js'
+import { extractFormData, createTransmitObj } from '../helpers/helpers.js'
 import todoService from '../services/todo.service.js'
 import authService from '../services/login.service.js'
 import moment from 'https://cdn.skypack.dev/moment'
@@ -75,12 +75,10 @@ editTodoForm.addEventListener('submit', async (e) => {
   e.preventDefault()
   const todo = extractFormData(editTodoForm)
   todo.id = todoID
-  const obj = {
-    url: `${metaData.api}api/todo/${todo.id}`,
-    data: todo,
-  }
-  // debugger
-  const res = await updateTodo(obj, token.accessToken)
+  const res = await updateTodo(
+    createTransmitObj(todo, `${metaData.api}api/todo/${todo.id}`),
+    token.accessToken
+  )
   if (res) {
     window.location.href = '/main'
   }
