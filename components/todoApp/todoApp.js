@@ -63,10 +63,6 @@ class TodoApp extends HTMLDivElement {
       const todo = extractFormData(this.editTodoForm)
       todo.id = this.editTodoForm.dataset.todo
       todo.user = this.user.id
-      // const obj = {
-      //   url: `${this.url}api/todo/${this.editTodoForm.dataset.todo}`,
-      //   data: todo,
-      // }
       const data = await updateTodo(
         createTransmitObj(
           todo,
