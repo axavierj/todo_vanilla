@@ -82,6 +82,7 @@ class TodoList extends HTMLElement {
     </div>
   </details>`
         })
+
         break
     }
   }
