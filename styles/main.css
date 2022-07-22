@@ -172,3 +172,14 @@ button[is='action-btn'][data-action='delete'] {
 .filter :is(label) {
   color: white;
 }
+
+@media only screen and (min-width: 768px) {
+  .content,
+  todo-search {
+    padding-inline: calc(var(--spacing-100) * 4);
+  }
+
+  todo-search {
+    margin-top: var(--spacing-100);
+  }
+}
