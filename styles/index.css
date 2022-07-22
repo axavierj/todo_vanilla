@@ -87,4 +87,9 @@
   .icon__container {
     margin-top: 70px;
   }
+
+  #home :is(.card) {
+    width: 60vw;
+    padding: var(--spacing-100);
+  }
 }
