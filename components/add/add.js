@@ -3,6 +3,7 @@ import todoService from '../../services/todo.service.js'
 import authService from '../../services/login.service.js'
 import { extractFormData, createCustomEvent } from '../../helpers/helpers.js'
 import metaData from '../../meta/meta.js'
+import { faker } from 'https://cdn.skypack.dev/@faker-js/faker'
 
 const { createTodo } = todoService
 const { getSessionToken, getUsers } = authService
@@ -19,6 +20,29 @@ class AddTodo extends HTMLElement {
     this.url = `${metaData.api}api/todo`
   }
   connectedCallback() {
+    const token = getSessionToken()
+    getUsers({ url: `${metaData.api}api/auth/user` }, token.accessToken).then(
+      (u) => {
+        console.log(u)
+        const user = u
+        for (let i = 0; i < 10; i++) {
+          const fakeData = {
+            title: faker.lorem.sentence(),
+            description: faker.lorem.paragraph(),
+            userId: user.id,
+            status: 'pending',
+            date: faker.date.future(),
+          }
+          createTodo({ url: this.url, data: fakeData }, token.accessToken)
+            .then((data) => {
+              console.log(data)
+            })
+            .catch((err) => {
+              console.log(err)
+            })
+        }
+      }
+    )
     const { addBtn, close } = this
     addBtn.addEventListener('click', (e) => {
       e.preventDefault()
