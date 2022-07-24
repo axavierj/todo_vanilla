@@ -109,3 +109,15 @@ export const createTransmitObj = (formData, url) => {
   }
   return obj
 }
+
+export const todoPageTotal = ({ data, limit }) => {
+  const total = Math.ceil(data.length / limit)
+  return total
+}
+
+export const splicedData = ({ data, limit, page }) => {
+  const start = (page - 1) * limit
+  const end = page * limit
+  const splicedData = data.slice(start, end)
+  return splicedData
+}

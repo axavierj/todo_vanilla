@@ -1,6 +1,11 @@
 import todoService from '../../services/todo.service.js'
 import authService from '../../services/login.service.js'
-import { extractFormData, createTransmitObj } from '../../helpers/helpers.js'
+import {
+  extractFormData,
+  createTransmitObj,
+  todoPageTotal,
+  splicedData,
+} from '../../helpers/helpers.js'
 import meta from '../../meta/meta.js'
 const { getAllTodo, deleteTodo, updateTodo } = todoService
 const { getSessionToken, getUsers } = authService
@@ -13,6 +18,10 @@ class TodoApp extends HTMLDivElement {
     this.editTodoForm = this.querySelector('#edit-todo-form')
     this.search = this.querySelector('todo-search')
     this.radioBtn = this.querySelectorAll('input[name="filter"]')
+    this.pager = this.querySelector('pager-component')
+    this.limit = 5
+    this.currentPage = 1
+    this.pages
     this.todoData = []
     this.user
     this.url = meta.api
@@ -22,8 +31,12 @@ class TodoApp extends HTMLDivElement {
     this.user = getUsers({ url: `${this.url}api/auth/user` }, token.accessToken)
     getAllTodo({ url: `${this.url}api/todo` }, token.accessToken).then(
       (data) => {
+        this.pages = todoPageTotal({ data, limit: this.limit })
+        this.pager.setAttribute('pages', this.pages)
         this.todoData = [...data]
-        this.todoList.todos = JSON.stringify(this.todoData)
+        this.todoList.todos = JSON.stringify(
+          splicedData({ data, limit: this.limit, page: this.currentPage })
+        )
         this.search.todos = JSON.stringify(this.todoData)
       }
     )
@@ -78,7 +91,9 @@ class TodoApp extends HTMLDivElement {
           token.accessToken
         )
         this.todoData = [...data]
-        this.todoList.todos = JSON.stringify(this.todoData)
+        this.todoList.todos = JSON.stringify(
+          splicedData({ data, limit: this.limit, page: this.currentPage })
+        )
         this.search.todos = JSON.stringify(this.todoData)
       }
     })
@@ -87,9 +102,11 @@ class TodoApp extends HTMLDivElement {
         { url: `${this.url}api/todo` },
         token.accessToken
       )
-      console.log(data)
+
       this.todoData = [...data]
-      this.todoList.todos = JSON.stringify(this.todoData)
+      this.todoList.todos = JSON.stringify(
+        splicedData({ data, limit: this.limit, page: this.currentPage })
+      )
       this.search.todos = JSON.stringify(this.todoData)
     })
     this.addEventListener('action', async (e) => {
@@ -113,7 +130,9 @@ class TodoApp extends HTMLDivElement {
               token.accessToken
             )
             this.todoData = [...data]
-            this.todoList.todos = JSON.stringify(this.todoData)
+            this.todoList.todos = JSON.stringify(
+              splicedData({ data, limit: this.limit, page: this.currentPage })
+            )
             this.search.todos = JSON.stringify(this.todoData)
           }
 
@@ -136,12 +155,68 @@ class TodoApp extends HTMLDivElement {
           break
       }
     })
+    this.addEventListener('page-change', (e) => {
+      this.currentPage = JSON.parse(e.detail.currentPage)
+      this.todoList.todos = JSON.stringify(
+        splicedData({
+          data: this.todoData,
+          limit: this.limit,
+          page: this.currentPage,
+        })
+      )
+    })
+    this.addEventListener('increment', (e) => {
+      this.currentPage = JSON.parse(e.detail.currentPage)
+      this.todoList.todos = JSON.stringify(
+        splicedData({
+          data: this.todoData,
+          limit: this.limit,
+          page: this.currentPage,
+        })
+      )
+    })
+    this.addEventListener('decrement', (e) => {
+      this.currentPage = JSON.parse(e.detail.currentPage)
+      this.todoList.todos = JSON.stringify(
+        splicedData({
+          data: this.todoData,
+          limit: this.limit,
+          page: this.currentPage,
+        })
+      )
+    })
+    this.addEventListener('begin', (e) => {
+      this.currentPage = JSON.parse(e.detail.currentPage)
+      this.todoList.todos = JSON.stringify(
+        splicedData({
+          data: this.todoData,
+          limit: this.limit,
+          page: this.currentPage,
+        })
+      )
+    })
+    this.addEventListener('end', (e) => {
+      this.currentPage = JSON.parse(e.detail.currentPage)
+      this.todoList.todos = JSON.stringify(
+        splicedData({
+          data: this.todoData,
+          limit: this.limit,
+          page: this.currentPage,
+        })
+      )
+    })
   }
   disconnectedCallback() {
     this.close.removeEventListener('click', (e) => {})
     this.editTodoForm.removeEventListener('submit', (e) => {})
-    this.addEventListener('add-todo', (e) => {})
-    this.addEventListener('action', (e) => {})
+    this.removeEventListener('todo-added', (e) => {})
+    this.removeEventListener('action', (e) => {})
+    this.removeEventListener('page-change', (e) => {})
+    this.removeEventListener('increment', (e) => {})
+    this.removeEventListener('decrement', (e) => {})
+    this.removeEventListener('begin', (e) => {})
+    this.removeEventListener('end', (e) => {})
+    this.removeEventListener('search', (e) => {})
   }
 }
 window.customElements.define('todo-app', TodoApp, { extends: 'div' })
